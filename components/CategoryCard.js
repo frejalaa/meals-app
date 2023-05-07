@@ -2,12 +2,13 @@ import { Pressable, View, Text, StyleSheet } from "react-native";
 
 import Colors from "../assets/colors/color";
 
-const CategoryCard = ({ category }) => {
+const CategoryCard = ({ category, onPress }) => {
   return (
     <View style={[styles.cardContainer, { backgroundColor: category.color }]}>
       <Pressable
         style={styles.buttonStyle}
         android_ripple={{ color: Colors.colorLightDark }}
+        onPress={onPress}
       >
         <View style={styles.cardContent}>
           <Text style={styles.title}>{category.title}</Text>
@@ -43,6 +44,6 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: "Sen-Bold",
     fontSize: 20,
-    color: Colors.colorWhite,
+    color: Colors.colorBlack,
   }
 });

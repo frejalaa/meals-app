@@ -2,11 +2,16 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View, Text } from "react-native";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
-
-import Categories from "./screens/Categories";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useCallback } from "react";
 
+import Categories from "./screens/Categories";
+import MealOverview from "./screens/MealOverview";
+
 SplashScreen.preventAutoHideAsync();
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -29,7 +34,12 @@ export default function App() {
     <>
       <StatusBar />
       <View style={styles.container} onLayout={onFontsLoaded}>
-        <Categories />
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen name="MealsCategories" component={Categories} />
+            <Stack.Screen name="MealOverview" component={MealOverview} />
+          </Stack.Navigator>
+        </NavigationContainer>
       </View>
     </>
   );
@@ -38,6 +48,5 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 30,
   },
 });

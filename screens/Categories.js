@@ -3,7 +3,13 @@ import { FlatList } from "react-native";
 import { CATEGORIES } from "../data/dummy-data";
 import CategoryCard from "../components/CategoryCard";
 
-const Categories = () => {
+const Categories = ({navigation}) => {
+  const changeScreen = (categoryId) => {
+    navigation.navigate("MealOverview", {
+      categoryId
+    });
+  };
+
   return (
     <FlatList
       data={CATEGORIES}
@@ -13,6 +19,7 @@ const Categories = () => {
         return (
           <CategoryCard
             category={itemData.item}
+            onPress={changeScreen.bind(this, itemData.item.id)}
           />
         );
       }}
