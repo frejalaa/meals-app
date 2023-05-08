@@ -1,10 +1,17 @@
 import { Pressable, View, Text, StyleSheet } from "react-native";
 
-import Colors from "../assets/colors/color";
+import Colors from "../../assets/colors/color";
+import Card from "../ui/Card";
 
 const CategoryCard = ({ category, onPress }) => {
+  const cardStyle = {
+    margin: 15,
+    height: 150,
+    backgroundColor: category.color,
+  }
+
   return (
-    <View style={[styles.cardContainer, { backgroundColor: category.color }]}>
+    <Card style={cardStyle}>
       <Pressable
         style={styles.buttonStyle}
         android_ripple={{ color: Colors.colorLightDark }}
@@ -14,23 +21,13 @@ const CategoryCard = ({ category, onPress }) => {
           <Text style={styles.title}>{category.title}</Text>
         </View>
       </Pressable>
-    </View>
+    </Card>
   );
 };
 
 export default CategoryCard;
 
 const styles = StyleSheet.create({
-  cardContainer: {
-    flex: 1,
-    margin: 15,
-    height: 150,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 10,
-    elevation: 5,
-    overflow: "hidden", // this is important for the ripple effect to work on Android
-  },
   buttonStyle: {
     flex: 1,
     width: "100%",

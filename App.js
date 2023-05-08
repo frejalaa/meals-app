@@ -8,6 +8,7 @@ import { useCallback } from "react";
 
 import Categories from "./screens/Categories";
 import MealOverview from "./screens/MealOverview";
+import MealAbout from "./screens/MealAbout";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -38,6 +39,7 @@ export default function App() {
           <Stack.Navigator>
             <Stack.Screen name="MealsCategories" component={Categories} />
             <Stack.Screen name="MealOverview" component={MealOverview} />
+            <Stack.Screen name="About the Meal" component={MealAbout} />
           </Stack.Navigator>
         </NavigationContainer>
       </View>

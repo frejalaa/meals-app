@@ -1,12 +1,12 @@
 import { FlatList } from "react-native";
 
 import { CATEGORIES } from "../data/dummy-data";
-import CategoryCard from "../components/CategoryCard";
+import CategoryCard from "../components/meal/CategoryCard";
 
-const Categories = ({navigation}) => {
+const Categories = ({ navigation }) => {
   const changeScreen = (categoryId) => {
     navigation.navigate("MealOverview", {
-      categoryId
+      categoryId,
     });
   };
 
