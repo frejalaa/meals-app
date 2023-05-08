@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, FlatList } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 
 import Card from "../ui/Card";
 import Colors from "../../assets/colors/color";
@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
     fontFamily: "Sen-Bold",
     fontSize: 16,
     textAlign: "center",
+    color: Colors.colorWhite,
   },
   stepsContainer: {
     width: "60%",

@@ -6,7 +6,7 @@ import CategoryCard from "../components/meal/CategoryCard";
 const Categories = ({ navigation }) => {
   const changeScreen = (categoryId) => {
     navigation.navigate("MealOverview", {
-      categoryId,
+      categoryId
     });
   };
 

@@ -9,6 +9,7 @@ import { useCallback } from "react";
 import Categories from "./screens/Categories";
 import MealOverview from "./screens/MealOverview";
 import MealAbout from "./screens/MealAbout";
+import Colors from "./assets/colors/color";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -36,10 +37,42 @@ export default function App() {
       <StatusBar />
       <View style={styles.container} onLayout={onFontsLoaded}>
         <NavigationContainer>
-          <Stack.Navigator>
-            <Stack.Screen name="MealsCategories" component={Categories} />
-            <Stack.Screen name="MealOverview" component={MealOverview} />
-            <Stack.Screen name="About the Meal" component={MealAbout} />
+          <Stack.Navigator
+            screenOptions={{
+              headerStyle: {
+                backgroundColor: Colors.colorBrown,
+              },
+              headerTitleAlign: "center",
+              headerTitleStyle: {
+                fontFamily: "Sen-Bold",
+                fontSize: 20,
+                color: Colors.colorWhite,
+              },
+              contentStyle: {
+                backgroundColor: Colors.colorBrownLight,
+              },
+              headerTintColor: Colors.colorWhite,
+            }}
+          >
+            <Stack.Screen
+              name="MealsCategories"
+              component={Categories}
+              options={{
+                title: "All Categories",
+              }}
+            />
+            <Stack.Screen
+              name="MealOverview"
+              component={MealOverview}
+              options={{title: "Meals"}}
+            />
+            <Stack.Screen
+              name="MealDetail"
+              component={MealAbout}
+              options={{
+                title: "Meal Detail",
+              }}
+            />
           </Stack.Navigator>
         </NavigationContainer>
       </View>

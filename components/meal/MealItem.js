@@ -14,7 +14,6 @@ const MealItem = ({ body, onPress }) => {
   };
 
   const goToMealDetail = () => {
-    console.log("goToMealDetail");
     onPress(body.id);
   };
 
