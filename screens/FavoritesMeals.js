@@ -1,9 +1,17 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { useContext } from "react";
 
-const FavoritesMeals = () => {
-  return <View>
-    <Text>FavoritesMeals</Text>
-  </View>
+import MealsList from "../components/meal/MealsList/MealsList";
+import { MEALS } from "../data/dummy-data";
+import { FavoritesContext } from "../store/context/favorites-context";
+
+const FavoritesMeals = ({ navigation }) => {
+  const favoritesMealsCtx = useContext(FavoritesContext);
+
+  const favoriteMeals = MEALS.filter((meal) =>
+    favoritesMealsCtx.ids.includes(meal.id)
+  );
+
+  return <MealsList list={favoriteMeals} />;
 };
 
 export default FavoritesMeals;

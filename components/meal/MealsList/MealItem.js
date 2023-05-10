@@ -1,10 +1,13 @@
 import { View, Text, Image, StyleSheet, Pressable } from "react-native";
 
-import Card from "../ui/Card";
-import MealDescription from "./MealDetail";
-import Colors from "../../assets/colors/color";
+import Card from "../../ui/Card";
+import MealDescription from "../MealDetail";
+import Colors from "../../../assets/colors/color";
+import { useNavigation } from "@react-navigation/native";
 
 const MealItem = ({ body, onPress }) => {
+  const navigation = useNavigation();
+
   const description = {
     title: body.title,
     duration: body.duration,
@@ -14,7 +17,9 @@ const MealItem = ({ body, onPress }) => {
   };
 
   const goToMealDetail = () => {
-    onPress(body.id);
+    navigation.navigate("MealDetail", {
+      mealId: body.id,
+    });
   };
 
   return (
