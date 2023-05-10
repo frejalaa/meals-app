@@ -14,6 +14,7 @@ import MealOverview from "./screens/MealOverview";
 import MealAbout from "./screens/MealAbout";
 import Colors from "./assets/colors/color";
 import FavoritesMeals from "./screens/FavoritesMeals";
+import FavoritesContextProvider from "./store/context/favorites-context";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -28,15 +29,20 @@ const DrawerNavigator = () => {
         component={Categories}
         options={{
           title: "All Categories",
-          drawerIcon: (({color, size}) => <Ionicons name="list" color={color} size={size} />)
+          drawerIcon: ({ color, size }) => (
+            <Ionicons name="list" color={color} size={size} />
+          ),
         }}
       />
       <Drawer.Screen
         name="FavoritesMeals"
         component={FavoritesMeals}
-        options={{ title: "Favorites Meals",
-        drawerIcon: (({color, size}) => <Ionicons name="star" color={color} size={size} />)
-      }}
+        options={{
+          title: "Favorites Meals",
+          drawerIcon: ({ color, size }) => (
+            <Ionicons name="star" color={color} size={size} />
+          ),
+        }}
       />
     </Drawer.Navigator>
   );
@@ -63,29 +69,31 @@ export default function App() {
     <>
       <StatusBar />
       <View style={styles.container} onLayout={onFontsLoaded}>
-        <NavigationContainer>
-          <Stack.Navigator screenOptions={optionsStack}>
-            <Stack.Screen
-              name="MealsCategories"
-              component={DrawerNavigator}
-              options={{
-                headerShown: false,
-              }}
-            />
-            <Stack.Screen
-              name="MealOverview"
-              component={MealOverview}
-              options={{ title: "Meals" }}
-            />
-            <Stack.Screen
-              name="MealDetail"
-              component={MealAbout}
-              options={{
-                title: "Meal Detail",
-              }}
-            />
-          </Stack.Navigator>
-        </NavigationContainer>
+        <FavoritesContextProvider>
+          <NavigationContainer>
+            <Stack.Navigator screenOptions={optionsStack}>
+              <Stack.Screen
+                name="MealsCategories"
+                component={DrawerNavigator}
+                options={{
+                  headerShown: false,
+                }}
+              />
+              <Stack.Screen
+                name="MealOverview"
+                component={MealOverview}
+                options={{ title: "Meals" }}
+              />
+              <Stack.Screen
+                name="MealDetail"
+                component={MealAbout}
+                options={{
+                  title: "Meal Detail",
+                }}
+              />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </FavoritesContextProvider>
       </View>
     </>
   );
