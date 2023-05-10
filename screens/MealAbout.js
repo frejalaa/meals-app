@@ -51,7 +51,7 @@ const MealAbout = ({ route, navigation }) => {
   return (
     <ScrollView style={styles.rootContainer}>
       <Image source={{ uri: selectedMeal.imageUrl }} style={styles.image} />
-      <MealDetail {...mealDetail} />
+      <MealDetail {...mealDetail} style={{mealDetail: styles.mealDetail}} />
       <MealSteps title={"Ingredients"} steps={selectedMeal.ingredients} />
       <MealSteps title={"Steps"} steps={selectedMeal.steps} />
     </ScrollView>
@@ -78,6 +78,6 @@ const styles = StyleSheet.create({
   mealDetail: {
     fontFamily: "Sen-Bold",
     fontSize: 16,
-    color: Colors.colorBlack,
+    color: Colors.colorWhite,
   },
 });

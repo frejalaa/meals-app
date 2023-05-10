@@ -6,6 +6,7 @@ const Colors = {
   colorRipple: "#ccc",
   colorBrown: "#32170d",
   colorBrownLight: "#4d2c1d",
+  colorBrownDark: "#3a1400",
 }
 
 export default Colors;

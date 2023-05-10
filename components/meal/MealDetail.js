@@ -2,18 +2,18 @@ import { View, Text, StyleSheet } from "react-native";
 
 import Colors from "../../assets/colors/color";
 
-const MealDetail = ({ title, duration, complexity, affordability, numberOfLines }) => {
+const MealDetail = ({ title, duration, complexity, affordability, numberOfLines, style }) => {
   return (
     <View>
       <View style={styles.titleContainer}>
-        <Text numberOfLines={numberOfLines} ellipsizeMode="tail" style={styles.title}>
+        <Text numberOfLines={numberOfLines} ellipsizeMode="tail" style={[styles.title, style?.title]}>
           {title}
         </Text>
       </View>
       <View style={styles.mealRow}>
-        <Text style={styles.mealDetail}>{duration}m</Text>
-        <Text style={styles.mealDetail}>{complexity.toUpperCase()}</Text>
-        <Text style={styles.mealDetail}>{affordability.toUpperCase()}</Text>
+        <Text style={[styles.mealDetail, style?.mealDetail]}>{duration}m</Text>
+        <Text style={[styles.mealDetail, style?.mealDetail]}>{complexity.toUpperCase()}</Text>
+        <Text style={[styles.mealDetail, style?.mealDetail]}>{affordability.toUpperCase()}</Text>
       </View>
     </View>
   );

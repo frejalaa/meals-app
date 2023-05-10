@@ -1,3 +1,4 @@
+import "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View, Text } from "react-native";
 import { useFonts } from "expo-font";
@@ -5,15 +6,41 @@ import * as SplashScreen from "expo-splash-screen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useCallback } from "react";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import { Ionicons } from "@expo/vector-icons";
 
 import Categories from "./screens/Categories";
 import MealOverview from "./screens/MealOverview";
 import MealAbout from "./screens/MealAbout";
 import Colors from "./assets/colors/color";
+import FavoritesMeals from "./screens/FavoritesMeals";
 
 SplashScreen.preventAutoHideAsync();
 
 const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
+
+const DrawerNavigator = () => {
+  return (
+    <Drawer.Navigator screenOptions={optionsDrawer}>
+      <Drawer.Screen
+        name="Categories"
+        component={Categories}
+        options={{
+          title: "All Categories",
+          drawerIcon: (({color, size}) => <Ionicons name="list" color={color} size={size} />)
+        }}
+      />
+      <Drawer.Screen
+        name="FavoritesMeals"
+        component={FavoritesMeals}
+        options={{ title: "Favorites Meals",
+        drawerIcon: (({color, size}) => <Ionicons name="star" color={color} size={size} />)
+      }}
+      />
+    </Drawer.Navigator>
+  );
+};
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -37,34 +64,18 @@ export default function App() {
       <StatusBar />
       <View style={styles.container} onLayout={onFontsLoaded}>
         <NavigationContainer>
-          <Stack.Navigator
-            screenOptions={{
-              headerStyle: {
-                backgroundColor: Colors.colorBrown,
-              },
-              headerTitleAlign: "center",
-              headerTitleStyle: {
-                fontFamily: "Sen-Bold",
-                fontSize: 20,
-                color: Colors.colorWhite,
-              },
-              contentStyle: {
-                backgroundColor: Colors.colorBrownLight,
-              },
-              headerTintColor: Colors.colorWhite,
-            }}
-          >
+          <Stack.Navigator screenOptions={optionsStack}>
             <Stack.Screen
               name="MealsCategories"
-              component={Categories}
+              component={DrawerNavigator}
               options={{
-                title: "All Categories",
+                headerShown: false,
               }}
             />
             <Stack.Screen
               name="MealOverview"
               component={MealOverview}
-              options={{title: "Meals"}}
+              options={{ title: "Meals" }}
             />
             <Stack.Screen
               name="MealDetail"
@@ -85,3 +96,36 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
+
+const options = {
+  headerStyle: {
+    backgroundColor: Colors.colorBrown,
+  },
+  headerTitleAlign: "center",
+  headerTitleStyle: {
+    fontFamily: "Sen-Bold",
+    fontSize: 20,
+    color: Colors.colorWhite,
+  },
+  headerTintColor: Colors.colorWhite,
+};
+
+const optionsDrawer = {
+  ...options,
+  sceneContainerStyle: {
+    backgroundColor: Colors.colorBrownLight,
+  },
+  drawerContentStyle: {
+    backgroundColor: Colors.colorBrownLight,
+  },
+  drawerInactiveTintColor: Colors.colorWhite,
+  drawerActiveBackgroundColor: Colors.colorBrownDark,
+  drawerActiveTintColor: Colors.colorWhite,
+};
+
+const optionsStack = {
+  ...options,
+  contentStyle: {
+    backgroundColor: Colors.colorBrownLight,
+  },
+};
